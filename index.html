@@ -4,20 +4,126 @@
   <title>ZenoriaMC</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="./css/style.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial;
+    }
+
+    body {
+      background: #020617;
+      color: white;
+      text-align: center;
+    }
+
+    /* HEADER */
+    .topbar {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 15px;
+      gap: 15px;
+    }
+
+    .icon {
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    /* SIDEBAR */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      right: -260px;
+      width: 260px;
+      height: 100%;
+      background: #020617;
+      padding: 20px;
+      transition: 0.3s;
+      z-index: 999;
+    }
+
+    .sidebar h2 {
+      color: #22c55e;
+      margin-bottom: 10px;
+    }
+
+    .sidebar div {
+      padding: 10px;
+      margin: 5px 0;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .sidebar div:hover {
+      background: #1e293b;
+    }
+
+    .close {
+      text-align: right;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    /* TITLE */
+    h1 {
+      font-size: 34px;
+      margin-top: 10px;
+    }
+
+    .mc {
+      color: #22c55e;
+    }
+
+    /* BUTTON */
+    .btn {
+      margin: 10px auto;
+      padding: 12px;
+      width: 200px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .play {
+      background: #22c55e;
+    }
+
+    .join {
+      background: #334155;
+    }
+
+    /* SECTION */
+    .section {
+      margin: 40px 20px;
+      font-size: 14px;
+      color: #cbd5f5;
+      line-height: 1.6;
+    }
+
+    .tags {
+      margin-top: 10px;
+      color: #94a3b8;
+    }
+
+    /* FOOTER */
+    .footer {
+      margin-top: 40px;
+      padding: 20px;
+      font-size: 13px;
+      color: #94a3b8;
+    }
+
+  </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
-<div class="header">
-  <div class="logo">Zenoria<span>MC</span></div>
-
-  <div class="right">
-    <div onclick="toggleTheme()">🌗</div>
-    <div onclick="openMenu()">☰</div>
-  </div>
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="icon" onclick="toggleTheme()">🌗</div>
+  <div class="icon" onclick="openMenu()">☰</div>
 </div>
 
 <!-- SIDEBAR -->
@@ -25,90 +131,87 @@
   <div class="close" onclick="closeMenu()">✖</div>
 
   <h2>Menu</h2>
-  <div onclick="go('./rank/index.html')">Store</div>
-  <div onclick="go('https://sociabuzz.com/asepajaweh/tribe')">Donation</div>
-  <div onclick="alert('Vote nanti')">Vote</div>
+  <div onclick="window.location.href='./rank/index.html'">Store</div>
+  <div onclick="window.open('https://sociabuzz.com/asepajaweh/tribe')">Donation</div>
+  <div onclick="alert('Vote belum ada')">Vote</div>
 </div>
 
-<!-- HERO -->
-<div class="hero">
-  <h1>ZENORIA MC</h1>
-  <p>Welcome to official server</p>
+<!-- TITLE -->
+<h1>Zenoria<span class="mc">MC</span></h1>
 
-  <button class="play" onclick="copyIP()">▶ Play Now</button>
-  <button class="join" onclick="go('https://bit.ly/3NJTRdk')">Join Group</button>
-</div>
+<!-- BUTTON -->
+<div class="btn play" onclick="copyIP()">▶ Play Now</div>
+<div class="btn join" onclick="window.open('https://bit.ly/3NJTRdk')">💬 Join Group</div>
 
-<!-- ABOUT -->
+<!-- CONTENT -->
 <div class="section">
-  <h2>What is ZenoriaMC?</h2>
-  <p>
-    ZenoriaMC adalah server minecraft dengan sistem economy modern
-    untuk Java & Bedrock.
-  </p>
 
-  <p>
-    Sistem Zen Economy akan berkembang dengan fitur seperti
-    Claim Block Shop dan Cosmetic Shop.
-  </p>
+<b>What is ZenoriaMC?</b><br><br>
 
-  <div class="tags">
-    【Java & Bedrock】 【Online 24 Jam】 【Indonesia Server】
-  </div>
+ZenoriaMC adalah server minecraft yg berfokus pada sistem economy yang menghadirkan pengalaman bermain yang menarik untuk Java dan Bedrock.
 
-  <p class="visi">
-    Visi kami adalah membangun komunitas Minecraft Indonesia yang positif.
-  </p>
+<br><br>
+
+<b>Sistem Economy (Zen Economy)</b><br><br>
+
+ZenoriaMC menghadirkan sistem economy yg mendalam (untuk kedepannya). Kami juga akan mencampur sistem seperti Claim Block Shop dan Cosmetic Shop.  
+Jadi tunggu apalagi, yuk dukung server ini dengan membeli rank!
+
+<div class="tags">
+【Java & Bedrock】 【Online 24 Jam】 【Indonesia Server】
 </div>
 
-<!-- MENU CARD -->
-<div class="cards">
+<br><br>
 
-  <div class="card green" onclick="go('./rank/index.html')">
-    🛒 Store
-    <span>Beli rank server</span>
-  </div>
-
-  <div class="card blue">
-    🗳️ Vote
-    <span>Dukung server</span>
-  </div>
-
-  <div class="card red" onclick="go('https://sociabuzz.com/asepajaweh/tribe')">
-    💖 Donation
-    <span>Support server</span>
-  </div>
+Visi misi kami adalah membangun komunitas Minecraft Indonesia yang positif.
 
 </div>
 
 <!-- FOOTER -->
 <div class="footer">
 
-  <div class="col">
-    <h3>Quick Links</h3>
-    <p>Store</p>
-    <p>Vote</p>
-    <p>Donation</p>
-  </div>
+<b>Quick Links:</b><br>
+Store<br>
+Vote<br>
+Donation<br><br>
 
-  <div class="col">
-    <h3>Server</h3>
-    <p>Rules</p>
-  </div>
+<b>Server:</b><br>
+Rules<br><br>
 
-  <div class="col">
-    <h3>Legal</h3>
-    <p>Terms of Service</p>
-    <p>Privacy Policy</p>
-  </div>
+<b>Legal:</b><br>
+Terms of Service<br>
+Privacy Policy<br><br>
+
+--------------------<br>
+© 2026 ZenoriaMC. All rights reserved.<br>
+Asep.OWNER
 
 </div>
 
-<div class="copyright">
-  © 2026 ZenoriaMC. All rights reserved.<br>
-  Asep.OWNER
-</div>
+<script>
+function openMenu(){
+  document.getElementById("menu").style.right="0";
+}
 
-<script src="./js/main.js"></script>
+function closeMenu(){
+  document.getElementById("menu").style.right="-260px";
+}
+
+function copyIP(){
+  navigator.clipboard.writeText("ZenoriaMC.arqonara.my.id");
+  alert("IP disalin!");
+}
+
+function toggleTheme(){
+  if(document.body.style.background=="white"){
+    document.body.style.background="#020617";
+    document.body.style.color="white";
+  } else {
+    document.body.style.background="white";
+    document.body.style.color="black";
+  }
+}
+</script>
+
 </body>
-  </html>
+</html>
