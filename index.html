@@ -48,6 +48,13 @@
       background: #334155;
     }
 
+    /* SUB MENU SETTING */
+    .submenu {
+      margin-top: 10px;
+      border-top: 1px solid #444;
+      padding-top: 10px;
+    }
+
     /* CONTAINER */
     .container {
       height: 100%;
@@ -76,27 +83,40 @@
       font-size: 14px;
     }
 
+    /* CARD MENU */
     .card {
       background: #1e293b;
-      margin: 10px 0;
+      margin: 12px 0;
       padding: 15px;
-      border-radius: 10px;
+      border-radius: 12px;
       cursor: pointer;
       transition: 0.3s;
+      text-align: left;
     }
 
     .card:hover {
-      background: #334155;
       transform: scale(1.05);
+      background: #334155;
+    }
+
+    .card-title {
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .card-desc {
+      font-size: 13px;
+      color: #94a3b8;
+      margin-top: 5px;
     }
 
     /* BUBBLE */
     .bubble {
       position: absolute;
       bottom: -50px;
-      background: rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.08);
       border-radius: 50%;
-      animation: naik 10s infinite;
+      animation: naik 12s infinite;
     }
 
     @keyframes naik {
@@ -112,9 +132,17 @@
 <div class="navbar" onclick="toggleMenu()">☰</div>
 
 <div class="menu" id="menu">
-  <div onclick="alert('Halaman Profile nanti')">👤 Profile</div>
-  <div onclick="alert('Halaman Wiki nanti')">📖 Wiki</div>
-  <div onclick="gantiWarna()">🎨 Setting</div>
+  <div onclick="alert('Profile nanti')">👤 Profile</div>
+  <div onclick="alert('Wiki nanti')">📖 Wiki</div>
+
+  <!-- SETTING -->
+  <div onclick="toggleSetting()">🎨 Setting</div>
+
+  <div class="submenu" id="settingMenu" style="display:none;">
+    <div onclick="setColor('#7f1d1d')">🔴 Merah</div>
+    <div onclick="setColor('#ffffff')">⚪ Putih</div>
+    <div onclick="setColor('linear-gradient(135deg,#020617,#0f172a)')">🌑 Default</div>
+  </div>
 </div>
 
 <!-- BUBBLE -->
@@ -133,17 +161,20 @@
     <div class="info">Port: 25483</div>
     <div class="info">Status: 🟢 Online 24 Jam</div>
 
-    <!-- MENU BOX -->
+    <!-- CARD MENU -->
     <div class="card" onclick="window.location.href='rank/'">
-      🛒 Server Store
+      <div class="card-title">🛒 Server Store</div>
+      <div class="card-desc">Beli rank, crate, dan item server</div>
     </div>
 
     <div class="card" onclick="alert('Vote belum tersedia')">
-      🗳️ Vote
+      <div class="card-title">🗳️ Vote</div>
+      <div class="card-desc">Dukung server dengan vote harian</div>
     </div>
 
     <div class="card" onclick="window.open('https://sociabuzz.com/asepajaweh/tribe')">
-      💖 Donation
+      <div class="card-title">💖 Donation</div>
+      <div class="card-desc">Support server agar terus berkembang</div>
     </div>
 
   </div>
@@ -155,9 +186,13 @@ function toggleMenu() {
   menu.style.display = menu.style.display === "block" ? "none" : "block";
 }
 
-function gantiWarna() {
-  let warna = prompt("Masukkan warna (contoh: blue, #ff0000)");
-  document.body.style.background = warna;
+function toggleSetting() {
+  let s = document.getElementById("settingMenu");
+  s.style.display = s.style.display === "block" ? "none" : "block";
+}
+
+function setColor(color) {
+  document.body.style.background = color;
 }
 </script>
 
