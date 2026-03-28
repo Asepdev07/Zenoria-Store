@@ -16,13 +16,13 @@
       background: #020617;
       color: white;
       text-align: center;
+      transition: 0.3s;
     }
 
     /* HEADER */
     .topbar {
       display: flex;
       justify-content: flex-end;
-      align-items: center;
       padding: 15px;
       gap: 15px;
     }
@@ -47,7 +47,6 @@
 
     .sidebar h2 {
       color: #22c55e;
-      margin-bottom: 10px;
     }
 
     .sidebar div {
@@ -115,6 +114,17 @@
       color: #94a3b8;
     }
 
+    .footer a {
+      color: #22c55e;
+      text-decoration: none;
+      display: inline-block;
+      margin: 2px 0;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
   </style>
 </head>
 
@@ -171,16 +181,16 @@ Visi misi kami adalah membangun komunitas Minecraft Indonesia yang positif.
 <div class="footer">
 
 <b>Quick Links:</b><br>
-Store<br>
-Vote<br>
-Donation<br><br>
+<a href="./rank/index.html">Store</a><br>
+<a href="#">Vote</a><br>
+<a href="https://sociabuzz.com/asepajaweh/tribe" target="_blank">Donation</a><br><br>
 
 <b>Server:</b><br>
-Rules<br><br>
+<a href="#">Rules</a><br><br>
 
 <b>Legal:</b><br>
-Terms of Service<br>
-Privacy Policy<br><br>
+<a href="#">Terms of Service</a><br>
+<a href="#">Privacy Policy</a><br><br>
 
 --------------------<br>
 © 2026 ZenoriaMC. All rights reserved.<br>
@@ -199,7 +209,7 @@ function closeMenu(){
 
 function copyIP(){
   navigator.clipboard.writeText("ZenoriaMC.arqonara.my.id");
-  alert("IP disalin!");
+  alert("IP berhasil disalin!");
 }
 
 function toggleTheme(){
