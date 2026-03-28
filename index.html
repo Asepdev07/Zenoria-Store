@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>ZEN STORE</title>
+  <title>Zenoria Store</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
@@ -13,30 +13,33 @@
     }
 
     body {
-      height: 100vh;
+      background: #0f172a;
       color: white;
-      overflow: hidden;
-      background: linear-gradient(135deg, #020617, #0f172a);
-      animation: bgMove 10s infinite alternate;
     }
 
-    @keyframes bgMove {
-      0% { background-position: left; }
-      100% { background-position: right; }
+    /* HEADER */
+    .header {
+      background: #020617;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #1e293b;
     }
 
-    /* NAVBAR */
-    .navbar {
-      position: absolute;
-      top: 10px;
-      left: 15px;
-      font-size: 28px;
+    .logo {
+      font-weight: bold;
+      color: #22c55e;
+      font-size: 18px;
+    }
+
+    .menu-btn {
+      font-size: 22px;
       cursor: pointer;
-      z-index: 1001;
     }
 
     /* SIDEBAR */
-    .menu {
+    .sidebar {
       position: fixed;
       top: 0;
       left: -260px;
@@ -46,160 +49,102 @@
       padding: 20px;
       transition: 0.3s;
       z-index: 1000;
-      box-shadow: 0 0 25px rgba(0,0,0,0.7);
     }
 
-    .menu h2 {
+    .sidebar h2 {
       color: #22c55e;
       margin-bottom: 15px;
     }
 
-    .menu div {
+    .sidebar div {
       padding: 12px;
       border-radius: 8px;
-      margin: 6px 0;
+      margin: 5px 0;
       cursor: pointer;
     }
 
-    .menu div:hover {
+    .sidebar div:hover {
       background: #1e293b;
     }
 
-    /* OVERLAY */
-    .overlay {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.5);
-      display: none;
-      z-index: 999;
-    }
-
-    /* CONTAINER */
+    /* CONTENT */
     .container {
-      height: 100%;
       padding: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
     }
 
-    /* HEADER */
-    .header {
-      text-align: center;
+    .server-box {
+      background: #020617;
+      padding: 20px;
+      border-radius: 15px;
       margin-bottom: 20px;
+      border: 1px solid #1e293b;
     }
 
-    h1 {
+    .server-box h2 {
       color: #22c55e;
-      text-shadow: 0 0 10px #22c55e;
     }
 
     .info {
       font-size: 14px;
-      margin: 3px 0;
       color: #cbd5f5;
+      margin: 3px 0;
     }
 
-    /* BOX */
-    .box {
-      width: 90%;
-      max-width: 500px;
-      padding: 20px;
-      border-radius: 20px;
-      background: rgba(255,255,255,0.05);
-      backdrop-filter: blur(10px);
-    }
-
-    /* CARD */
+    /* CARD MENU */
     .card {
-      background: #16a34a;
-      margin: 20px 0;
+      background: #020617;
+      border: 1px solid #1e293b;
       padding: 18px;
-      border-radius: 12px;
+      border-radius: 15px;
+      margin: 12px 0;
       cursor: pointer;
       transition: 0.3s;
     }
 
     .card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px #22c55e;
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px rgba(34,197,94,0.2);
     }
 
     .card-title {
       font-weight: bold;
+      margin-bottom: 5px;
     }
 
     .card-desc {
       font-size: 13px;
-      opacity: 0.9;
+      color: #94a3b8;
     }
 
-    /* BUBBLE */
-    .bubble {
-      position: absolute;
-      bottom: -50px;
-      background: rgba(255,255,255,0.08);
-      border-radius: 50%;
-      animation: naik 12s infinite;
-    }
-
-    @keyframes naik {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-110vh); }
-    }
-
-    /* GLOW */
-    .glow {
-      position: absolute;
-      width: 100%;
-      height: 2px;
-      background: #22c55e;
-      top: 0;
-      animation: glowMove 3s infinite;
-    }
-
-    @keyframes glowMove {
-      0%,100% { opacity: 0; }
-      50% { opacity: 1; }
-    }
   </style>
 </head>
 
 <body>
 
-<div class="glow"></div>
-
-<!-- NAVBAR -->
-<div class="navbar" onclick="toggleMenu()">☰</div>
+<!-- HEADER -->
+<div class="header">
+  <div class="logo">ZENORIA STORE</div>
+  <div class="menu-btn" onclick="toggleMenu()">☰</div>
+</div>
 
 <!-- SIDEBAR -->
-<div class="menu" id="menu">
-
+<div class="sidebar" id="menu">
   <h2>MENU</h2>
   <div onclick="alert('Profile nanti')">👤 Profile</div>
   <div onclick="alert('Wiki nanti')">📖 Wiki</div>
 
   <h2>SETTING</h2>
+  <div onclick="setColor('#0f172a')">🌑 Default</div>
   <div onclick="setColor('#7f1d1d')">🔴 Merah</div>
   <div onclick="setColor('#ffffff')">⚪ Putih</div>
-  <div onclick="setColor('linear-gradient(135deg,#020617,#0f172a)')">🌑 Default</div>
-
 </div>
-
-<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
-
-<!-- BUBBLE -->
-<div class="bubble" style="left:10%; width:20px; height:20px;"></div>
-<div class="bubble" style="left:40%; width:15px; height:15px;"></div>
-<div class="bubble" style="left:70%; width:25px; height:25px;"></div>
 
 <!-- CONTENT -->
 <div class="container">
 
-  <div class="header">
-    <h1>ZEN STORE</h1>
-    <div class="info">Welcome to official ZENORIAMC</div>
+  <!-- SERVER INFO -->
+  <div class="server-box">
+    <h2>ZenoriaMC</h2>
     <div class="info">IP: ZenoriaMC.arqonara.my.id</div>
     <div class="info">Port: 25483</div>
     <div class="info">Status: <span id="status">Loading...</span></div>
@@ -207,43 +152,31 @@
     <div class="info">Tanggal: <span id="tanggal"></span></div>
   </div>
 
-  <div class="box">
+  <!-- MENU -->
+  <div class="card" onclick="window.location.href='./rank/index.html'">
+    <div class="card-title">🛒 Server Store</div>
+    <div class="card-desc">Beli rank dan item server</div>
+  </div>
 
-    <div class="card" onclick="window.location.href='rank/'">
-      <div class="card-title">🛒 Server Store</div>
-      <div class="card-desc">Beli rank dan item server</div>
-    </div>
+  <div class="card" onclick="alert('Vote belum tersedia')">
+    <div class="card-title">🗳️ Vote</div>
+    <div class="card-desc">Dukung server dengan vote harian</div>
+  </div>
 
-    <div class="card" onclick="alert('Vote belum tersedia')">
-      <div class="card-title">🗳️ Vote</div>
-      <div class="card-desc">Support server dengan vote</div>
-    </div>
-
-    <div class="card" onclick="window.open('https://sociabuzz.com/asepajaweh/tribe')">
-      <div class="card-title">💖 Donation</div>
-      <div class="card-desc">Dukung server kami</div>
-    </div>
-
+  <div class="card" onclick="window.open('https://sociabuzz.com/asepajaweh/tribe')">
+    <div class="card-title">💖 Donation</div>
+    <div class="card-desc">Support server kami</div>
   </div>
 
 </div>
 
 <script>
-// SIDEBAR
 function toggleMenu() {
   let menu = document.getElementById("menu");
-  let overlay = document.getElementById("overlay");
-
-  if (menu.style.left === "0px") {
-    menu.style.left = "-260px";
-    overlay.style.display = "none";
-  } else {
-    menu.style.left = "0px";
-    overlay.style.display = "block";
-  }
+  menu.style.left = menu.style.left === "0px" ? "-260px" : "0px";
 }
 
-// SET COLOR + SAVE + REFRESH
+// SAVE COLOR
 function setColor(color) {
   localStorage.setItem("bg", color);
   location.reload();
@@ -253,10 +186,10 @@ function setColor(color) {
 let saved = localStorage.getItem("bg");
 if (saved) document.body.style.background = saved;
 
-// TANGGAL
+// DATE
 document.getElementById("tanggal").innerHTML = new Date().toLocaleDateString();
 
-// PLAYER REAL API
+// API PLAYER
 fetch("https://api.mcsrvstat.us/2/ZenoriaMC.arqonara.my.id:25483")
 .then(res => res.json())
 .then(data => {
