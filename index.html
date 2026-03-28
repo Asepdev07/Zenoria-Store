@@ -1,87 +1,81 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>ZenoriaMC Store</title>
+  <title>ZenoriaMC Shop</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
-      background: linear-gradient(to bottom, #020617, #0f172a);
-      color: white;
+      height: 100vh; /* # Full tinggi layar */
+      display: flex;
+      justify-content: center; /* # Tengah horizontal */
+      align-items: center;     /* # Tengah vertikal */
       font-family: Arial;
+      color: white;
+
+      /* # Background gradasi gelap */
+      background: linear-gradient(135deg, #020617, #0f172a, #020617);
+      background-size: 400% 400%;
+      animation: bgMove 10s infinite alternate;
+    }
+
+    /* # Animasi background */
+    @keyframes bgMove {
+      0% { background-position: left; }
+      100% { background-position: right; }
+    }
+
+    .container {
       text-align: center;
     }
 
     h1 {
-      margin-top: 40px;
+      font-size: 40px;
+      margin-bottom: 10px;
     }
 
-    .container {
-      margin-top: 30px;
+    p {
+      color: #94a3b8;
+      margin-bottom: 30px;
     }
 
-    .card {
-      background: #1e293b;
-      margin: 15px;
-      padding: 20px;
-      border-radius: 15px;
-      display: inline-block;
-      width: 260px;
-      transition: 0.3s;
-    }
-
-    .card:hover {
-      transform: scale(1.05);
-      background: #334155;
-    }
-
-    .price {
-      color: #38bdf8;
-      font-size: 22px;
-      margin: 10px 0;
-    }
-
-    button {
+    .btn {
       background: #22c55e;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 10px;
-      color: white;
+      padding: 15px 30px;
+      border-radius: 12px;
+      font-size: 18px;
       cursor: pointer;
+      transition: 0.3s;
+      display: inline-block;
     }
 
-    button:hover {
+    .btn:hover {
       background: #16a34a;
+      transform: scale(1.1);
+      box-shadow: 0 0 20px #22c55e;
     }
   </style>
 </head>
-<body>
 
-<h1>🌿 ZenoriaMC Rank Store</h1>
-<p>Pilih rank favorit kamu!</p>
+<body>
 
 <div class="container">
 
-  <div class="card">
-    <h2>VIP</h2>
-    <p class="price">Rp10.000</p>
-    <p>✔ Kit VIP<br>✔ Prefix<br>✔ 2x reward</p>
-    <button onclick="window.location.href='https://discord.gg/yourlink'">Buy</button>
-  </div>
+  <h1>🌿 ZENORIA SHOP</h1>
+  <p>Welcome to official ZenoriaMC Store</p>
 
-  <div class="card">
-    <h2>MVP</h2>
-    <p class="price">Rp25.000</p>
-    <p>✔ Semua VIP<br>✔ Fly<br>✔ 3x reward</p>
-    <button onclick="window.location.href='https://discord.gg/yourlink'">Buy</button>
-  </div>
-
-  <div class="card">
-    <h2>SULTAN</h2>
-    <p class="price">Rp50.000</p>
-    <p>✔ Semua MVP<br>✔ Kit OP<br>✔ Tag Khusus</p>
-    <button onclick="window.location.href='https://discord.gg/yourlink'">Buy</button>
+  <!-- # Tombol ke rank -->
+  <div class="btn" onclick="window.location.href='rank/'">
+    🛒 Buka Rank Shop
   </div>
 
 </div>
 
 </body>
-  </html>
+</html>
