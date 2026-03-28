@@ -15,17 +15,25 @@
     body {
       min-height: 100vh;
       color: white;
-      background: linear-gradient(135deg,#020617,#0f172a);
+      background: linear-gradient(135deg,#020617,#0f172a,#020617);
+      background-size: 300% 300%;
+      animation: bg 10s infinite alternate;
       overflow-x: hidden;
     }
 
-    /* HEADER */
-    .header {
-      position: absolute;
-      top: 10px;
+    @keyframes bg {
+      0% { background-position: left; }
+      100% { background-position: right; }
+    }
+
+    /* MENU */
+    .menu-btn {
+      position: fixed;
+      top: 15px;
       right: 15px;
-      font-size: 25px;
+      font-size: 24px;
       cursor: pointer;
+      z-index: 1000;
     }
 
     /* SIDEBAR */
@@ -59,12 +67,13 @@
 
     /* MAIN */
     .container {
-      padding: 30px;
+      padding: 70px 20px 20px;
       text-align: center;
     }
 
     h1 {
       color: #22c55e;
+      font-size: 32px;
       text-shadow: 0 0 10px #22c55e;
     }
 
@@ -73,32 +82,51 @@
       margin-bottom: 10px;
     }
 
+    .server-line {
+      font-size: 13px;
+      color: #cbd5f5;
+      margin-bottom: 15px;
+    }
+
     .info {
       font-size: 14px;
       margin: 3px 0;
       color: #cbd5f5;
     }
 
+    /* GRID */
+    .grid {
+      margin-top: 20px;
+      display: grid;
+      gap: 15px;
+    }
+
     /* CARD */
     .card {
-      background: #1e293b;
-      margin: 15px auto;
-      padding: 15px;
-      border-radius: 12px;
-      max-width: 400px;
+      padding: 18px;
+      border-radius: 15px;
       cursor: pointer;
       transition: 0.3s;
     }
 
     .card:hover {
-      transform: scale(1.05);
-      background: #334155;
+      transform: translateY(-5px);
+    }
+
+    .store { background: #14532d; }
+    .vote { background: #1e3a8a; }
+    .donate { background: #7c2d12; }
+    .wiki { background: #334155; }
+
+    .title {
+      font-weight: bold;
+      font-size: 16px;
     }
 
     .about {
       font-size: 13px;
-      color: #94a3b8;
       margin-top: 5px;
+      color: #cbd5f5;
     }
 
     /* BUBBLE */
@@ -106,13 +134,13 @@
       position: fixed;
       bottom: -50px;
       border-radius: 50%;
-      opacity: 0.2;
-      animation: naik 12s infinite;
+      opacity: 0.15;
+      animation: naik linear infinite;
     }
 
     @keyframes naik {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-120vh); }
+      from { transform: translateY(0); }
+      to { transform: translateY(-120vh); }
     }
 
   </style>
@@ -120,118 +148,102 @@
 
 <body>
 
-<!-- MENU -->
-<div class="header" onclick="toggleMenu()">☰</div>
+<div class="menu-btn" onclick="toggleMenu()">☰</div>
 
 <div class="sidebar" id="menu">
 
   <h2>Profile</h2>
-  <div onclick="alert('Profile nanti')">👤 Buka Profile</div>
+  <div onclick="alert('Profile nanti')">👤 Profile</div>
 
   <h2>Setting</h2>
-
-  <!-- WARNA -->
   <div onclick="setBg('#020617')">🌑 Default</div>
   <div onclick="setBg('#7f1d1d')">🔴 Merah</div>
   <div onclick="setBg('#ffffff')">⚪ Putih</div>
 
-  <!-- ANIMASI -->
   <div onclick="setAnim('bubble')">🌊 Bubble</div>
   <div onclick="setAnim('none')">❌ No Animasi</div>
 
-  <!-- WARNA BUBBLE -->
-  <div onclick="setBubbleColor('white')">⚪ Bubble Putih</div>
-  <div onclick="setBubbleColor('#22c55e')">🟢 Bubble Hijau</div>
-
 </div>
 
-<!-- CONTENT -->
 <div class="container">
 
   <h1>ZEN STORE</h1>
   <div class="subtitle">Welcome to official ZENORIA MC</div>
 
-  <div class="info">(On 24 jam • Player 50)</div>
+  <div class="server-line">
+    🟢 Online 24 Jam • 👥 <span id="player">Loading...</span> Player
+  </div>
+
   <div class="info">IP: ZenoriaMC.arqonara.my.id</div>
   <div class="info">Port: 25483</div>
   <div class="info">Status: <span id="status">Loading...</span></div>
-  <div class="info">Online Player: <span id="player">Loading...</span></div>
 
-  <!-- STORE -->
-  <div class="card" onclick="window.location.href='./rank/index.html'">
-    🛒 Server Store
-    <div class="about">Beli rank dan item server</div>
-  </div>
+  <!-- MENU GRID -->
+  <div class="grid">
 
-  <!-- VOTE -->
-  <div class="card">
-    🗳️ Vote
-    <div class="about">Support server dengan vote harian</div>
-  </div>
+    <div class="card store" onclick="window.location.href='./rank/index.html'">
+      <div class="title">🛒 Server Store</div>
+      <div class="about">Beli rank dan item server</div>
+    </div>
 
-  <!-- DONATION -->
-  <div class="card" onclick="window.open('https://sociabuzz.com/asepajaweh/tribe')">
-    💖 Donation
-    <div class="about">Dukung perkembangan server</div>
-  </div>
+    <div class="card vote">
+      <div class="title">🗳️ Vote</div>
+      <div class="about">Dukung server dengan vote</div>
+    </div>
 
-  <!-- WIKI -->
-  <div class="card" onclick="alert('Wiki nanti')">
-    📖 Wiki
-    <div class="about">Panduan dan info server</div>
+    <div class="card donate" onclick="window.open('https://sociabuzz.com/asepajaweh/tribe')">
+      <div class="title">💖 Donation</div>
+      <div class="about">Support perkembangan server</div>
+    </div>
+
+    <div class="card wiki">
+      <div class="title">📖 Wiki</div>
+      <div class="about">Panduan dan info server</div>
+    </div>
+
   </div>
 
 </div>
 
 <script>
-function toggleMenu() {
-  let m = document.getElementById("menu");
-  m.style.right = m.style.right === "0px" ? "-260px" : "0px";
+function toggleMenu(){
+  let m=document.getElementById("menu");
+  m.style.right = m.style.right==="0px"?"-260px":"0px";
 }
 
-/* BACKGROUND */
-function setBg(color) {
-  localStorage.setItem("bg", color);
+function setBg(c){
+  localStorage.setItem("bg",c);
   location.reload();
 }
 
-/* ANIMASI */
-function setAnim(anim) {
-  localStorage.setItem("anim", anim);
+function setAnim(a){
+  localStorage.setItem("anim",a);
   location.reload();
 }
 
-/* BUBBLE COLOR */
-function setBubbleColor(color) {
-  localStorage.setItem("bubble", color);
-  location.reload();
-}
+let bg=localStorage.getItem("bg");
+if(bg) document.body.style.background=bg;
 
-/* LOAD */
-let bg = localStorage.getItem("bg");
-if(bg) document.body.style.background = bg;
-
-let anim = localStorage.getItem("anim");
-let bubbleColor = localStorage.getItem("bubble") || "white";
-
-if(anim === "bubble"){
-  for(let i=0;i<10;i++){
-    let b = document.createElement("div");
+let anim=localStorage.getItem("anim");
+if(anim==="bubble"){
+  for(let i=0;i<12;i++){
+    let b=document.createElement("div");
     b.className="bubble";
     b.style.left=Math.random()*100+"%";
     b.style.width=10+Math.random()*20+"px";
     b.style.height=b.style.width;
-    b.style.background=bubbleColor;
+    b.style.background="white";
+    b.style.animationDuration=5+Math.random()*10+"s";
     document.body.appendChild(b);
   }
 }
 
-/* API PLAYER */
+/* API */
 fetch("https://api.mcsrvstat.us/2/ZenoriaMC.arqonara.my.id:25483")
 .then(r=>r.json())
 .then(d=>{
-  document.getElementById("status").innerHTML = d.online ? "🟢 Online" : "🔴 Offline";
-  document.getElementById("player").innerHTML = d.online ? d.players.online+"/"+d.players.max : "-";
+  document.getElementById("status").innerHTML=d.online?"🟢 Online":"🔴 Offline";
+  document.getElementById("player").innerHTML=d.online?d.players.online:"0";
 });
 </script>
 
