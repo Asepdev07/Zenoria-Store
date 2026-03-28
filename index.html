@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>ZenoriaMC Shop</title>
+  <title>ZEN STORE</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
@@ -20,98 +20,141 @@
       color: white;
       overflow: hidden;
 
-      /* Background gradient + animasi */
       background: linear-gradient(135deg, #020617, #0f172a, #020617);
       background-size: 400% 400%;
-      animation: bgMove 12s infinite alternate;
+      animation: bg 10s infinite alternate;
     }
 
-    @keyframes bgMove {
+    @keyframes bg {
       0% { background-position: left; }
       100% { background-position: right; }
     }
 
-    /* Card utama (glass effect) */
     .container {
-      backdrop-filter: blur(10px);
-      background: rgba(255, 255, 255, 0.05);
-      padding: 50px;
-      border-radius: 20px;
+      width: 90%;
+      max-width: 500px;
       text-align: center;
-      box-shadow: 0 0 40px rgba(0,0,0,0.6);
-      animation: fadeIn 1.5s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
+      padding: 30px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 30px rgba(0,0,0,0.5);
     }
 
     h1 {
-      font-size: 45px;
-      margin-bottom: 10px;
-
-      /* Glow text */
+      font-size: 35px;
       color: #22c55e;
-      text-shadow: 0 0 10px #22c55e, 0 0 20px #22c55e;
+      text-shadow: 0 0 10px #22c55e;
     }
 
-    p {
+    .subtitle {
       color: #94a3b8;
-      margin-bottom: 40px;
+      margin-bottom: 20px;
+    }
+
+    .info {
+      margin: 10px 0;
+      font-size: 14px;
+      color: #cbd5f5;
+    }
+
+    .box {
+      background: #1e293b;
+      padding: 15px;
+      border-radius: 10px;
+      margin: 15px 0;
     }
 
     .btn {
-      background: linear-gradient(45deg, #22c55e, #16a34a);
-      padding: 15px 35px;
-      border-radius: 12px;
-      font-size: 18px;
+      background: #22c55e;
+      padding: 12px;
+      margin: 8px 0;
+      border-radius: 10px;
       cursor: pointer;
-      display: inline-block;
       transition: 0.3s;
-
-      /* Glow tombol */
-      box-shadow: 0 0 15px #22c55e;
     }
 
     .btn:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 25px #22c55e, 0 0 50px #22c55e;
+      background: #16a34a;
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #22c55e;
     }
 
-    /* Particle kecil */
-    .circle {
-      position: absolute;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.1);
-      animation: float 10s infinite;
+    .about {
+      margin-top: 15px;
+      font-size: 13px;
+      color: #94a3b8;
     }
 
-    @keyframes float {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-100vh); }
+    .status-online {
+      color: #22c55e;
+    }
+
+    .status-offline {
+      color: red;
     }
   </style>
 </head>
 
 <body>
 
-<!-- Particle background -->
-<div class="circle" style="width: 20px; height: 20px; left: 20%; bottom: -50px;"></div>
-<div class="circle" style="width: 15px; height: 15px; left: 50%; bottom: -60px;"></div>
-<div class="circle" style="width: 25px; height: 25px; left: 80%; bottom: -70px;"></div>
-
 <div class="container">
 
-  <h1>🌿 ZENORIA SHOP</h1>
-  <p>Official Store ZenoriaMC</p>
+  <h1>ZEN STORE</h1>
+  <p class="subtitle">Welcome to official ZENORIAMC</p>
 
-  <!-- Tombol utama -->
+  <div class="box">
+    <div class="info">IP: ZenoriaMC.arqonara.my.id</div>
+    <div class="info">Port: 25483</div>
+    <div class="info">Status: <span id="status">Loading...</span></div>
+    <div class="info">Player Online: <span id="player">Loading...</span></div>
+    <div class="info">Tanggal: <span id="tanggal"></span></div>
+  </div>
+
+  <!-- MENU -->
   <div class="btn" onclick="window.location.href='rank/'">
-    🛒 Buka Rank Shop
+    🛒 Server Store
+  </div>
+
+  <div class="btn" onclick="alert('Vote belum tersedia')">
+    🗳️ Vote
+  </div>
+
+  <div class="btn" onclick="window.open('https://sociabuzz.com/asepajaweh/tribe')">
+    💖 Donation
+  </div>
+
+  <!-- ABOUT -->
+  <div class="about">
+    ZenoriaMC adalah server Survival Economy RPG dengan fitur unik, sistem rank, crate, dan komunitas aktif.
   </div>
 
 </div>
 
+<script>
+  // Tanggal otomatis
+  let tgl = new Date();
+  document.getElementById("tanggal").innerHTML = tgl.toLocaleDateString();
+
+  // Ambil data server real
+  fetch("https://api.mcsrvstat.us/2/ZenoriaMC.arqonara.my.id:25483")
+    .then(res => res.json())
+    .then(data => {
+
+      if (data.online) {
+        document.getElementById("status").innerHTML = "<span class='status-online'>🟢 Online</span>";
+        document.getElementById("player").innerHTML = data.players.online + " / " + data.players.max;
+      } else {
+        document.getElementById("status").innerHTML = "<span class='status-offline'>🔴 Offline</span>";
+        document.getElementById("player").innerHTML = "-";
+      }
+
+    })
+    .catch(() => {
+      document.getElementById("status").innerHTML = "Error";
+      document.getElementById("player").innerHTML = "Error";
+    });
+</script>
+
 </body>
-</html>
+  </html>
