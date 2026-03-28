@@ -13,28 +13,18 @@
     }
 
     body {
-      background: #0f172a;
+      min-height: 100vh;
       color: white;
+      background: linear-gradient(135deg,#020617,#0f172a);
+      overflow-x: hidden;
     }
 
     /* HEADER */
     .header {
-      background: #020617;
-      padding: 15px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #1e293b;
-    }
-
-    .logo {
-      font-weight: bold;
-      color: #22c55e;
-      font-size: 18px;
-    }
-
-    .menu-btn {
-      font-size: 22px;
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 25px;
       cursor: pointer;
     }
 
@@ -42,7 +32,7 @@
     .sidebar {
       position: fixed;
       top: 0;
-      left: -260px;
+      right: -260px;
       width: 260px;
       height: 100%;
       background: #020617;
@@ -53,13 +43,13 @@
 
     .sidebar h2 {
       color: #22c55e;
-      margin-bottom: 15px;
+      margin-top: 10px;
     }
 
     .sidebar div {
-      padding: 12px;
-      border-radius: 8px;
+      padding: 10px;
       margin: 5px 0;
+      border-radius: 8px;
       cursor: pointer;
     }
 
@@ -67,53 +57,62 @@
       background: #1e293b;
     }
 
-    /* CONTENT */
+    /* MAIN */
     .container {
-      padding: 20px;
+      padding: 30px;
+      text-align: center;
     }
 
-    .server-box {
-      background: #020617;
-      padding: 20px;
-      border-radius: 15px;
-      margin-bottom: 20px;
-      border: 1px solid #1e293b;
-    }
-
-    .server-box h2 {
+    h1 {
       color: #22c55e;
+      text-shadow: 0 0 10px #22c55e;
+    }
+
+    .subtitle {
+      color: #94a3b8;
+      margin-bottom: 10px;
     }
 
     .info {
       font-size: 14px;
-      color: #cbd5f5;
       margin: 3px 0;
+      color: #cbd5f5;
     }
 
-    /* CARD MENU */
+    /* CARD */
     .card {
-      background: #020617;
-      border: 1px solid #1e293b;
-      padding: 18px;
-      border-radius: 15px;
-      margin: 12px 0;
+      background: #1e293b;
+      margin: 15px auto;
+      padding: 15px;
+      border-radius: 12px;
+      max-width: 400px;
       cursor: pointer;
       transition: 0.3s;
     }
 
     .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 0 20px rgba(34,197,94,0.2);
+      transform: scale(1.05);
+      background: #334155;
     }
 
-    .card-title {
-      font-weight: bold;
-      margin-bottom: 5px;
-    }
-
-    .card-desc {
+    .about {
       font-size: 13px;
       color: #94a3b8;
+      margin-top: 5px;
+    }
+
+    /* BUBBLE */
+    .bubble {
+      position: fixed;
+      bottom: -50px;
+      border-radius: 50%;
+      opacity: 0.2;
+      animation: naik 12s infinite;
+    }
+
+    @keyframes naik {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-120vh); }
     }
 
   </style>
@@ -121,85 +120,118 @@
 
 <body>
 
-<!-- HEADER -->
-<div class="header">
-  <div class="logo">ZENORIA STORE</div>
-  <div class="menu-btn" onclick="toggleMenu()">☰</div>
-</div>
+<!-- MENU -->
+<div class="header" onclick="toggleMenu()">☰</div>
 
-<!-- SIDEBAR -->
 <div class="sidebar" id="menu">
-  <h2>MENU</h2>
-  <div onclick="alert('Profile nanti')">👤 Profile</div>
-  <div onclick="alert('Wiki nanti')">📖 Wiki</div>
 
-  <h2>SETTING</h2>
-  <div onclick="setColor('#0f172a')">🌑 Default</div>
-  <div onclick="setColor('#7f1d1d')">🔴 Merah</div>
-  <div onclick="setColor('#ffffff')">⚪ Putih</div>
+  <h2>Profile</h2>
+  <div onclick="alert('Profile nanti')">👤 Buka Profile</div>
+
+  <h2>Setting</h2>
+
+  <!-- WARNA -->
+  <div onclick="setBg('#020617')">🌑 Default</div>
+  <div onclick="setBg('#7f1d1d')">🔴 Merah</div>
+  <div onclick="setBg('#ffffff')">⚪ Putih</div>
+
+  <!-- ANIMASI -->
+  <div onclick="setAnim('bubble')">🌊 Bubble</div>
+  <div onclick="setAnim('none')">❌ No Animasi</div>
+
+  <!-- WARNA BUBBLE -->
+  <div onclick="setBubbleColor('white')">⚪ Bubble Putih</div>
+  <div onclick="setBubbleColor('#22c55e')">🟢 Bubble Hijau</div>
+
 </div>
 
 <!-- CONTENT -->
 <div class="container">
 
-  <!-- SERVER INFO -->
-  <div class="server-box">
-    <h2>ZenoriaMC</h2>
-    <div class="info">IP: ZenoriaMC.arqonara.my.id</div>
-    <div class="info">Port: 25483</div>
-    <div class="info">Status: <span id="status">Loading...</span></div>
-    <div class="info">Player: <span id="player">Loading...</span></div>
-    <div class="info">Tanggal: <span id="tanggal"></span></div>
+  <h1>ZEN STORE</h1>
+  <div class="subtitle">Welcome to official ZENORIA MC</div>
+
+  <div class="info">(On 24 jam • Player 50)</div>
+  <div class="info">IP: ZenoriaMC.arqonara.my.id</div>
+  <div class="info">Port: 25483</div>
+  <div class="info">Status: <span id="status">Loading...</span></div>
+  <div class="info">Online Player: <span id="player">Loading...</span></div>
+
+  <!-- STORE -->
+  <div class="card" onclick="window.location.href='./rank/index.html'">
+    🛒 Server Store
+    <div class="about">Beli rank dan item server</div>
   </div>
 
-  <!-- MENU -->
-  <div class="card" onclick="window.location.href='./server-store/index.html'">
-    <div class="card-title">🛒 Server Store</div>
-    <div class="card-desc">Beli rank dan item server</div>
+  <!-- VOTE -->
+  <div class="card">
+    🗳️ Vote
+    <div class="about">Support server dengan vote harian</div>
   </div>
 
-  <div class="card" onclick="alert('Vote belum tersedia')">
-    <div class="card-title">🗳️ Vote</div>
-    <div class="card-desc">Dukung server dengan vote harian</div>
-  </div>
-
+  <!-- DONATION -->
   <div class="card" onclick="window.open('https://sociabuzz.com/asepajaweh/tribe')">
-    <div class="card-title">💖 Donation</div>
-    <div class="card-desc">Support server kami</div>
+    💖 Donation
+    <div class="about">Dukung perkembangan server</div>
+  </div>
+
+  <!-- WIKI -->
+  <div class="card" onclick="alert('Wiki nanti')">
+    📖 Wiki
+    <div class="about">Panduan dan info server</div>
   </div>
 
 </div>
 
 <script>
 function toggleMenu() {
-  let menu = document.getElementById("menu");
-  menu.style.left = menu.style.left === "0px" ? "-260px" : "0px";
+  let m = document.getElementById("menu");
+  m.style.right = m.style.right === "0px" ? "-260px" : "0px";
 }
 
-// SAVE COLOR
-function setColor(color) {
+/* BACKGROUND */
+function setBg(color) {
   localStorage.setItem("bg", color);
   location.reload();
 }
 
-// LOAD COLOR
-let saved = localStorage.getItem("bg");
-if (saved) document.body.style.background = saved;
+/* ANIMASI */
+function setAnim(anim) {
+  localStorage.setItem("anim", anim);
+  location.reload();
+}
 
-// DATE
-document.getElementById("tanggal").innerHTML = new Date().toLocaleDateString();
+/* BUBBLE COLOR */
+function setBubbleColor(color) {
+  localStorage.setItem("bubble", color);
+  location.reload();
+}
 
-// API PLAYER
-fetch("https://api.mcsrvstat.us/2/ZenoriaMC.arqonara.my.id:25483")
-.then(res => res.json())
-.then(data => {
-  if (data.online) {
-    document.getElementById("status").innerHTML = "🟢 Online";
-    document.getElementById("player").innerHTML = data.players.online + "/" + data.players.max;
-  } else {
-    document.getElementById("status").innerHTML = "🔴 Offline";
-    document.getElementById("player").innerHTML = "-";
+/* LOAD */
+let bg = localStorage.getItem("bg");
+if(bg) document.body.style.background = bg;
+
+let anim = localStorage.getItem("anim");
+let bubbleColor = localStorage.getItem("bubble") || "white";
+
+if(anim === "bubble"){
+  for(let i=0;i<10;i++){
+    let b = document.createElement("div");
+    b.className="bubble";
+    b.style.left=Math.random()*100+"%";
+    b.style.width=10+Math.random()*20+"px";
+    b.style.height=b.style.width;
+    b.style.background=bubbleColor;
+    document.body.appendChild(b);
   }
+}
+
+/* API PLAYER */
+fetch("https://api.mcsrvstat.us/2/ZenoriaMC.arqonara.my.id:25483")
+.then(r=>r.json())
+.then(d=>{
+  document.getElementById("status").innerHTML = d.online ? "🟢 Online" : "🔴 Offline";
+  document.getElementById("player").innerHTML = d.online ? d.players.online+"/"+d.players.max : "-";
 });
 </script>
 
